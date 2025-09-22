@@ -5,7 +5,18 @@ import Projects from "./components/Projects.tsx";
 export default function App() {
 
   const handleDownloadCV = () => {
-    window.open('/Luca_Airaghi_CV.pdf', '_blank');
+    //create an invisible <a> tag in memory (like temporary download button, but user can't see)
+    const link = document.createElement('a');
+    //where to find CV
+    link.href = '/CV_Luca_Airaghi.pdf';
+    //download of CV
+    link.download = 'CV_Luca_Airaghi.pdf';
+    //simulate click on the link
+    document.body.appendChild(link);
+    //trigger download browser behavior
+    link.click();
+    //remove the link from memory
+    document.body.removeChild(link);
   }
 
   return (
