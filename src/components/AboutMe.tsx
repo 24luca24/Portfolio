@@ -20,9 +20,12 @@ function AboutMe({ imageLink, insubriaLink, usiLink }: AboutMeProps) {
 
                 {/* Second and third columns - About Me */}
                 <div className="md:col-span-2">
-                    <h2 className="text-3xl font-bold text-gray-900 mb-6">
-                        About Me
-                    </h2>
+                    <span className="block w-full px-3 py-1 bg-indigo-100 rounded-lg">
+                        <h2 className="text-3xl font-bold text-gray-900 mb-3 mt-3">
+                            About Me
+                        </h2>
+                    </span>
+                    
                     <div className="text-lg text-gray-900 leading-relaxed space-y-4">
                         <p>
                             Hi everyone, I'm <b>Luca Airaghi</b>, a student of the Master in Software and Data Engineering at{" "}

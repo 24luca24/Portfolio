@@ -2,6 +2,7 @@ import NavBar from "./components/NavBar.tsx";
 import AboutMe from "./components/AboutMe.tsx";
 import Projects from "./components/Projects.tsx";
 import Footer from "./components/Footer.tsx";
+import Internship from "./components/internship.tsx";
 
 export default function App() {
 
@@ -36,6 +37,7 @@ export default function App() {
         insubriaLink="www.uninsubria.it" 
         usiLink="www.usi.ch"
         />
+      <Internship/>
       <Projects />
       <Footer 
         city="Gorla Minore, VA, Italy"

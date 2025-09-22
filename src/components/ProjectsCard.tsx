@@ -1,14 +1,14 @@
 interface ProjectsCardProps {
     title: string;
     description: string;
-    imageUrl: string;
+
     projectLink: string;
 }
 
-function ProjectsCard({title, description, imageUrl, projectLink}: ProjectsCardProps) {
+function ProjectsCard({title, description, projectLink}: ProjectsCardProps) {
     return (
         <div className="max-w-sm rounded overflow-hidden shadow-lg bg-white flex flex-col h-full pt-0">
-            <img className="w-full h-48 object-cover bg-gray-100" src={imageUrl} alt={title} />
+
 
             {/*Content that grows */}
             <div className="px-6 py-4 flex-grow">
