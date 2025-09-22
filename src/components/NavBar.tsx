@@ -3,13 +3,14 @@ interface NavBarProps {
     surname: string;
     githubLink: string;
     linkedinLink: string;
+    email: string;
     profession: string;
     downloadCVButton: () => void;
 }
 
-function NavBar({name, surname, githubLink, linkedinLink, profession, downloadCVButton}: NavBarProps) {
+function NavBar({name, surname, githubLink, linkedinLink, email, profession, downloadCVButton}: NavBarProps) {
     return (        
-        <header className="w-full bg-white shadow-md border-b">
+        <header className="sticky top-0 z-35 w-full bg-white shadow-md border-b">
             <div className="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center">
 
                 {/*Left side - name and surname*/}
@@ -24,6 +25,12 @@ function NavBar({name, surname, githubLink, linkedinLink, profession, downloadCV
 
                 {/*Right side - links and button*/}
                 <div className="flex items-center space-x-6">
+                    <a
+                        href={`mailto:${email}`}
+                        className="text-gray-700 hover:text-blue-600 transition-colors"
+                    >
+                        {email}
+                    </a>
                     <a
                         href={githubLink}
                         className="text-gray-700 hover:text-blue-600 transition-colors"

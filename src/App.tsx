@@ -1,6 +1,7 @@
 import NavBar from "./components/NavBar.tsx";
 import AboutMe from "./components/AboutMe.tsx";
 import Projects from "./components/Projects.tsx";
+import Footer from "./components/Footer.tsx";
 
 export default function App() {
 
@@ -27,6 +28,7 @@ export default function App() {
         profession="Software and Data Engineer"
         githubLink="https://github.com/24luca24"
         linkedinLink="https://linkedin.com/in/lucaairaghi"
+        email="luca.airaghi24@gmail.com"
         downloadCVButton={handleDownloadCV}
       />
       <AboutMe 
@@ -35,6 +37,11 @@ export default function App() {
         usiLink="www.usi.ch"
         />
       <Projects />
+      <Footer 
+        city="Gorla Minore, VA, Italy"
+        address="Via Monte Berico 9"
+        phoneNumber="+39 3475925080"
+      />
     </div>
   );
 }
