@@ -33,9 +33,9 @@ export default function App() {
         downloadCVButton={handleDownloadCV}
       />
       <AboutMe 
-        imageLink="/images/profile.jpg" 
-        insubriaLink="www.uninsubria.it" 
-        usiLink="www.usi.ch"
+        imageLink={`${import.meta.env.BASE_URL}images/profile.jpg`}
+        insubriaLink="https://www.uninsubria.it" 
+        usiLink="https://www.usi.ch"
         />
       <Internship/>
       <Projects />
