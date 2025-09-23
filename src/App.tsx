@@ -10,7 +10,7 @@ export default function App() {
     //create an invisible <a> tag in memory (like temporary download button, but user can't see)
     const link = document.createElement('a');
     //where to find CV
-    link.href = '/CV_Luca_Airaghi.pdf';
+    link.href = `${import.meta.env.BASE_URL}CV_Luca_Airaghi.pdf`;
     //download of CV
     link.download = 'CV_Luca_Airaghi.pdf';
     //simulate click on the link
