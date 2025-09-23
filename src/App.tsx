@@ -2,7 +2,7 @@ import NavBar from "./components/NavBar.tsx";
 import AboutMe from "./components/AboutMe.tsx";
 import Projects from "./components/Projects.tsx";
 import Footer from "./components/Footer.tsx";
-import Internship from "./components/internship.tsx";
+import Internship from "./components/Internship.tsx";
 
 export default function App() {
 
