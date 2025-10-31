@@ -7,9 +7,7 @@ interface ProjectsCardProps {
 
 function ProjectsCard({title, description, projectLink}: ProjectsCardProps) {
     return (
-        <div className="max-w-sm rounded overflow-hidden shadow-lg bg-white flex flex-col h-full pt-0">
-
-
+        <div className="max-w-sm rounded overflow-hidden shadow-lg bg-white flex flex-col h-full pt-0 transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:border-indigo-300 hover:border-4">
             {/*Content that grows */}
             <div className="px-6 py-4 flex-grow">
                 <div className="font-bold text-xl mb-2 text-gray-900">{title}</div>
