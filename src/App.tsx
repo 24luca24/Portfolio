@@ -2,7 +2,7 @@
   - useState -> let me store and update data in the component
   - useEffect -> runs code when component loads or when something changes
 */
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { ChevronDown, Github, Linkedin, Mail, Calendar, Code2, Database, Brain, Download } from 'lucide-react';
 import profilePic from './assets/profile.jpg'
 
@@ -23,9 +23,9 @@ const FullPagePortfolio = () => {
   const sections = ['hero', 'about', 'stats', 'experience', 'projects', 'contact'];
 
   //Calculate years and months of experience for each language
-  const calculateExperience = (startDate) => {
-    const start = new Date(startDate);
-    const now = new Date();
+  const calculateExperience = (startDate: string): number => {
+    const start = new Date(startDate).getTime();
+    const now = Date.now();
     const diffTime = Math.abs(now - start);
     const diffYears = diffTime / (1000 * 60 * 60 * 24 * 365.25);
     return diffYears;
@@ -65,7 +65,7 @@ const FullPagePortfolio = () => {
   ];
 
   //Function that handles scrolling
-  const handleScroll = (direction) => {
+  const handleScroll = (direction: 'up' | 'down') => {
     if (isScrolling) return; //If already true I exit, to avoid multiple scrolls at once
     
     setIsScrolling(true);
@@ -79,7 +79,7 @@ const FullPagePortfolio = () => {
   };
 
   useEffect(() => {
-    const handleWheel = (e) => {
+    const handleWheel = (e: WheelEvent) => {
       e.preventDefault();
       if (e.deltaY > 0) {
         handleScroll('down');
@@ -89,7 +89,7 @@ const FullPagePortfolio = () => {
     };
 
     //Function to handle keyboard arrow used to scroll
-    const handleKeyDown = (e) => {
+    const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'ArrowDown') handleScroll('down');
       if (e.key === 'ArrowUp') handleScroll('up');
     };
@@ -239,7 +239,7 @@ const FullPagePortfolio = () => {
             </h2>
             
             <div className="grid gap-8">
-              {skills.map((skill, index) => {
+              {skills.map((skill) => {
                 const years = calculateExperience(skill.startDate);
                 const months = Math.floor((years % 1) * 12);
                 const fullYears = Math.floor(years);
@@ -436,7 +436,7 @@ const FullPagePortfolio = () => {
         </section>
       </div>
 
-      <style jsx>{`
+      <style>{`
         @keyframes float {
           0%, 100% { transform: translate(0, 0) scale(1); }
           50% { transform: translate(30px, -30px) scale(1.1); }
