@@ -2,8 +2,8 @@
   - useState -> let me store and update data in the component
   - useEffect -> runs code when component loads or when something changes
 */
-import { useState, useEffect } from 'react';
-import { ChevronDown, Github, Linkedin, Mail, Calendar, Code2, Database, Brain, Download } from 'lucide-react';
+import { useState, useEffect, useRef } from 'react';
+import { ChevronDown, ChevronUp, Github, Linkedin, Mail, Calendar, Code2, Database, Brain, Download } from 'lucide-react';
 import profilePic from './assets/profile.jpg'
 
 //Navigation system, tracks which section you are in.
@@ -32,7 +32,6 @@ const FullPagePortfolio = () => {
   };
 
   //Here I stored the skills as an array of objects (each object is one skill)
-  //TODO: menzionare quelle che ho fatto per poco e anche con poca conoscienza, giusto un infarinatura??
   const skills = [
     { 
       name: 'Java', 
@@ -78,13 +77,23 @@ const FullPagePortfolio = () => {
     setTimeout(() => setIsScrolling(false), 1000); //Allow scrolling again after one second
   };
 
+  const scrollAccumulator = useRef(0);
+  const SCROLL_THRESHOLD = 80;
+
+
   useEffect(() => {
     const handleWheel = (e: WheelEvent) => {
       e.preventDefault();
-      if (e.deltaY > 0) {
+
+      if (isScrolling) return; //do nothing if we are moving into the next page
+
+      scrollAccumulator.current += e.deltaY;
+      if (scrollAccumulator.current > SCROLL_THRESHOLD) {
         handleScroll('down');
-      } else {
+        scrollAccumulator.current = 0;
+      } else if (scrollAccumulator.current < - SCROLL_THRESHOLD) {
         handleScroll('up');
+        scrollAccumulator.current = 0;
       }
     };
 
@@ -106,6 +115,17 @@ const FullPagePortfolio = () => {
   return (
     <div className="relative w-full h-screen bg-black text-white overflow-hidden">
 
+      {/* ARROW NAVIGATION UP */}
+      {currentSection > 0 && (
+        <button
+          onClick={() => handleScroll('up')}
+          className="fixed top-8 right-8 z-50 animate-bounce"
+          aria-label="Previous section"
+        >
+          <ChevronUp className="w-12 h-12 text-cyan-400" />
+        </button>
+      )}
+
       {/* NAVIGATION DOTS */}
       <div className="fixed right-8 top-1/2 transform -translate-y-1/2 z-50 flex flex-col gap-4">
         {sections.map((section, index) => (
@@ -122,7 +142,7 @@ const FullPagePortfolio = () => {
         ))}
       </div>
 
-      {/* ARROW NAVIGATION */}
+      {/* ARROW NAVIGATION DOWN*/}
       {currentSection < sections.length - 1 && (
         <button
           onClick={() => handleScroll('down')}
@@ -132,7 +152,7 @@ const FullPagePortfolio = () => {
           <ChevronDown className="w-12 h-12 text-cyan-400" />
         </button>
       )}
-
+      
       {/* SECTIONS CONTAINER */}
       <div 
         className="h-full transition-transform duration-1000 ease-in-out"
@@ -193,8 +213,13 @@ const FullPagePortfolio = () => {
         </section>
 
         {/* About Section */}
-        <section className="h-screen flex items-center justify-center px-4 sm:px-8">
-          <div className="max-w-6xl grid md:grid-cols-2 gap-12 items-center">
+        <section className="
+          w-full
+          min-h-screen 
+          flex items-center justify-center
+          px-4 sm:px-8 md:px-12 lg:px-16
+          py-24 lg:py-32">
+          <div className="max-w-screen-xl grid md:grid-cols-2 gap-12 items-center">
 
             {/* Profile Image */}
             <div className="relative w-full max-w-md mx-auto md:mx-0">
@@ -207,7 +232,15 @@ const FullPagePortfolio = () => {
             </div>
             
             <div>
-              <h2 className="text-6xl font-bold mb-8 bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">
+              <h2 className="
+                text-4xl sm:text-5xl md:text-6xl lg:text-7xl
+                font-bold 
+                mb-16
+                text-center 
+                leading-[1.4]
+                bg-gradient-to-r from-cyan-400 to-purple-400 
+                bg-clip-text 
+                text-transparent">
                 About Me
               </h2>
               <div className="space-y-4 text-gray-300 text-lg">
@@ -232,9 +265,22 @@ const FullPagePortfolio = () => {
         </section>
 
         {/* Stats Section */}
-        <section className="min-h-screen flex items-center justify-center px-4 sm:px-8">
-          <div className="max-w-6xl w-full">
-            <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-16 text-center leading-[1.2] sm:leading-[1.25] md:leading-[1.3] lg:leading-[1.35] bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">
+        <section className="
+          w-full
+          min-h-screen 
+          flex items-center justify-center
+          px-4 sm:px-8 md:px-12 lg:px-16
+          py-24 lg:py-32        
+        ">
+          <div className="max-w-screen-xl w-full">
+            <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl
+                font-bold 
+                mb-16
+                text-center 
+                leading-[1.4]
+                bg-gradient-to-r from-cyan-400 to-purple-400 
+                bg-clip-text 
+                text-transparent">
               Coding Journey
             </h2>
             
@@ -265,7 +311,7 @@ const FullPagePortfolio = () => {
                       <div 
                         className="h-full rounded-full transition-all duration-1000 ease-out"
                         style={{ 
-                          width: currentSection >= 2 ? `${Math.min((years / 5) * 100, 100)}%` : '0%',
+                          width: currentSection >= sections.indexOf('stats') ? `${Math.min((years / 5) * 100, 100)}%` : '0%',
                           background: `linear-gradient(90deg, ${skill.color}, ${skill.color}dd)`
                         }}
                       />
@@ -299,9 +345,23 @@ const FullPagePortfolio = () => {
         </section>
 
         {/* Experience Section */}
-        <section className="h-screen flex items-center justify-center px-8">
+        <section className="
+          w-full
+          min-h-screen 
+          flex items-center justify-center
+          px-4 sm:px-8 md:px-12 lg:px-16
+          py-24 lg:py-32
+          ">
           <div className="max-w-5xl w-full">
-            <h2 className="text-6xl font-bold mb-16 text-center bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">
+            <h2 className="
+              text-4xl sm:text-5xl md:text-6xl lg:text-7xl
+                font-bold 
+                mb-16
+                text-center 
+                leading-[1.4]
+                bg-gradient-to-r from-cyan-400 to-purple-400 
+                bg-clip-text 
+                text-transparent">
               Experience
             </h2>
             
@@ -334,9 +394,22 @@ const FullPagePortfolio = () => {
         </section>
 
         {/* Projects Section */}
-        <section className="h-screen flex items-center justify-center px-8">
+        <section className="
+          w-full
+          min-h-screen 
+          flex items-center justify-center
+          px-4 sm:px-8 md:px-12 lg:px-16
+          py-24 lg:py-32
+          ">
           <div className="max-w-6xl w-full">
-            <h2 className="text-64xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-16 text-center leading-[1.2] sm:leading-[1.25] md:leading-[1.3] lg:leading-[1.35]  bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">
+            <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl
+                font-bold 
+                mb-16
+                text-center 
+                leading-[1.4]
+                bg-gradient-to-r from-cyan-400 to-purple-400 
+                bg-clip-text 
+                text-transparent">
               Featured Projects
             </h2>
             
@@ -384,9 +457,23 @@ const FullPagePortfolio = () => {
         </section>
 
         {/* Contact Section */}
-        <section className="h-screen flex items-center justify-center px-8">
+        <section className="
+          w-full
+          min-h-screen 
+          flex items-center justify-center
+          px-4 sm:px-8 md:px-12 lg:px-16
+          py-24 lg:py-32
+        ">
           <div className="max-w-4xl w-full text-center">
-            <h2 className="text-6xl font-bold mb-8 bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">
+            <h2 className="
+            text-4xl sm:text-5xl md:text-6xl lg:text-7xl
+                font-bold 
+                mb-16
+                text-center 
+                leading-[1.4]
+                bg-gradient-to-r from-cyan-400 to-purple-400 
+                bg-clip-text 
+                text-transparent">
               Let's Connect
             </h2>
             <p className="text-2xl text-gray-300 mb-12">
