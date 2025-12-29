@@ -182,17 +182,34 @@ The project is actively under development. Planned features include:
                 [&_code]:text-cyan-300 [&_code]:bg-gray-800 [&_code]:px-2 [&_code]:py-1 [&_code]:rounded [&_code]:text-sm
                 [&_blockquote]:border-l-4 [&_blockquote]:border-cyan-400 [&_blockquote]:pl-4 [&_blockquote]:italic [&_blockquote]:text-white
               `,children:O.jsx(Yx,{components:{p:({children:h})=>O.jsx("p",{className:"whitespace-pre-line",children:h})},children:l.longDescription})})]}),l.github&&O.jsx("div",{className:"pt-8 border-t border-gray-700 mt-8",children:O.jsxs("a",{href:l.github,target:"_blank",rel:"noopener noreferrer",className:"inline-flex items-center gap-3 px-8 py-4 bg-cyan-400 text-gray-900 font-semibold rounded-lg hover:bg-cyan-300 transition-all hover:scale-105 shadow-lg hover:shadow-cyan-400/50",children:[O.jsx(Xp,{className:"w-5 h-5"}),"View on GitHub"]})})]})]})]})});return z0.createPortal(f,document.body)},qp=()=>{const[l,u]=ue.useState(null);return ue.useEffect(()=>(l?(console.log("Modal project:",l),document.body.style.overflow="hidden"):document.body.style.overflow="unset",()=>{document.body.style.overflow="unset"}),[l]),O.jsxs(O.Fragment,{children:[O.jsx("section",{className:"w-full min-h-screen flex items-center justify-center px-4 sm:px-8 md:px-12 lg:px-16 py-24 lg:py-32",children:O.jsxs("div",{className:"max-w-6xl w-full",children:[O.jsx("h2",{className:"text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-16 text-center leading-[1.4] bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent",children:"Featured Projects"}),O.jsx("div",{className:"grid md:grid-cols-3 gap-8",children:T0.map(r=>O.jsx(A0,{project:r,onOpen:u},r.id))})]})}),l&&O.jsx(Zx,{project:l,onClose:()=>u(null)})]})},Yp=()=>O.jsx("section",{className:`
-          w-full
-          min-h-screen 
-          flex items-center justify-center
-          px-4 sm:px-8 md:px-12 lg:px-16
-          py-24 lg:py-32
-         `,children:O.jsxs("div",{className:"max-w-4xl w-full text-center",children:[O.jsx("h2",{className:`
+        w-full
+        min-h-screen 
+        flex items-center justify-center
+        px-4 sm:px-8 md:px-12 lg:px-16
+        py-24 lg:py-32
+      `,children:O.jsxs("div",{className:"max-w-4xl w-full text-center",children:[O.jsx("h2",{className:`
             text-4xl sm:text-5xl md:text-6xl lg:text-7xl
-                font-bold 
-                mb-16
-                text-center 
-                leading-[1.4]
-                bg-gradient-to-r from-cyan-400 to-purple-400 
-                bg-clip-text 
-                text-transparent`,children:"Let's Connect"}),O.jsx("p",{className:"text-2xl text-gray-300 mb-12",children:"I'm always open to new opportunities and collaborations"}),O.jsxs("div",{className:"flex gap-8 justify-center mb-12",children:[O.jsxs("a",{href:"mailto:luca.airaghi24@gmail.com",className:"flex items-center gap-3 bg-gradient-to-r from-cyan-400 to-cyan-500 text-black px-8 py-4 rounded-full hover:scale-110 transition font-semibold text-lg",children:[O.jsx(Qp,{className:"w-6 h-6"}),"Email Me"]}),O.jsxs("a",{href:"Airaghi_Luca_CV.pdf",className:"flex items-center gap-3 bg-gradient-to-r from-purple-400 to-purple-500 text-black px-8 py-4 rounded-full hover:scale-110 transition font-semibold text-lg",children:[O.jsx(f0,{className:"w-6 h-6"}),"Download CV"]})]}),O.jsxs("div",{className:"flex gap-8 justify-center",children:[O.jsx("a",{href:"https://github.com/24luca24",target:"_blank",rel:"noopener noreferrer",className:"text-gray-400 hover:text-cyan-400 transition text-lg",children:"GitHub"}),O.jsx("a",{href:"https://www.linkedin.com/in/lucaairaghi/",target:"_blank",rel:"noopener noreferrer",className:"text-gray-400 hover:text-cyan-400 transition text-lg",children:"LinkedIn"})]})]})}),Kx=({currentSection:l,maxSections:u,onScroll:r})=>O.jsxs(O.Fragment,{children:[l>0&&O.jsx("button",{onClick:()=>r("up"),className:"fixed top-8 right-8 z-50 animate-bounce","aria-label":"Previous section",children:O.jsx(u0,{className:"w-12 h-12 text-cyan-400"})}),l<u-1&&O.jsx("button",{onClick:()=>r("down"),className:"fixed bottom-8 right-8 z-50 animate-bounce","aria-label":"Next section",children:O.jsx(a0,{className:"w-12 h-12 text-cyan-400"})})]}),Jx=({sections:l,currentSection:u,onSelect:r,disabled:c=!1})=>O.jsx("div",{className:"fixed right-8 top-1/2 -translate-y-1/2 z-50 flex flex-col gap-4",children:l.map((s,f)=>O.jsx("button",{onClick:()=>!c&&r(f),className:`w-3 h-3 rounded-full transition-all duration-300 ${u===f?"bg-cyan-400 scale-150":"bg-gray-600 hover:bg-gray-400"}`,"aria-label":`Go to ${s}`},s))}),Fx=()=>{const{currentSection:l,setCurrentSection:u,handleScroll:r,isScrolling:c}=Iy(Cu.length);return O.jsxs(O.Fragment,{children:[O.jsxs("div",{className:"hidden md:block relative w-full h-screen bg-black text-white overflow-hidden",children:[O.jsx(Kx,{currentSection:l,maxSections:Cu.length,onScroll:r}),O.jsx(Jx,{sections:Cu,currentSection:l,onSelect:u,disabled:c}),O.jsxs("div",{className:"h-full transition-transform duration-1000 ease-in-out",style:{transform:`translateY(-${l*100}vh)`},children:[O.jsx($d,{}),O.jsx(Wd,{}),O.jsx(tp,{currentSection:l}),O.jsx(ep,{}),O.jsx(qp,{}),O.jsx(Yp,{})]})]}),O.jsxs("div",{className:"md:hidden relative w-full bg-black text-white",children:[O.jsx($d,{}),O.jsx(Wd,{}),O.jsx(tp,{currentSection:0}),O.jsx(ep,{}),O.jsx(qp,{}),O.jsx(Yp,{})]})]})};Fy.createRoot(document.getElementById("root")).render(O.jsx(Vy.StrictMode,{children:O.jsx(Fx,{})}));
+            font-bold 
+            mb-16
+            text-center 
+            leading-[1.4]
+            bg-gradient-to-r from-cyan-400 to-purple-400 
+            bg-clip-text 
+            text-transparent
+          `,children:"Let's Connect"}),O.jsx("p",{className:"text-2xl text-gray-300 mb-12",children:"I'm always open to new opportunities and collaborations"}),O.jsxs("div",{className:"flex gap-8 justify-center mb-12",children:[O.jsxs("a",{href:"mailto:luca.airaghi24@gmail.com",className:`
+              flex items-center gap-3 
+              bg-gradient-to-r from-cyan-400 to-cyan-500 
+              text-white 
+              px-8 py-4 rounded-full 
+              border-2 border-cyan-400
+              hover:scale-110 hover:from-cyan-300 hover:to-cyan-400
+              transition-all duration-300 font-semibold text-lg
+            `,children:[O.jsx(Qp,{className:"w-6 h-6"}),"Email Me"]}),O.jsxs("a",{href:"Airaghi_Luca_CV.pdf",className:`
+              flex items-center gap-3 
+              bg-gradient-to-r from-purple-400 to-purple-500 
+              text-white 
+              px-8 py-4 rounded-full 
+              border-2 border-purple-400
+              hover:scale-110 hover:from-purple-300 hover:to-purple-400
+              transition-all duration-300 font-semibold text-lg
+            `,children:[O.jsx(f0,{className:"w-6 h-6"}),"Download CV"]})]}),O.jsxs("div",{className:"flex gap-8 justify-center",children:[O.jsx("a",{href:"https://github.com/24luca24",target:"_blank",rel:"noopener noreferrer",className:"text-gray-400 hover:text-cyan-400 transition text-lg",children:"GitHub"}),O.jsx("a",{href:"https://www.linkedin.com/in/lucaairaghi/",target:"_blank",rel:"noopener noreferrer",className:"text-gray-400 hover:text-cyan-400 transition text-lg",children:"LinkedIn"})]})]})}),Kx=({currentSection:l,maxSections:u,onScroll:r})=>O.jsxs(O.Fragment,{children:[l>0&&O.jsx("button",{onClick:()=>r("up"),className:"fixed top-8 right-8 z-50 animate-bounce","aria-label":"Previous section",children:O.jsx(u0,{className:"w-12 h-12 text-cyan-400"})}),l<u-1&&O.jsx("button",{onClick:()=>r("down"),className:"fixed bottom-8 right-8 z-50 animate-bounce","aria-label":"Next section",children:O.jsx(a0,{className:"w-12 h-12 text-cyan-400"})})]}),Jx=({sections:l,currentSection:u,onSelect:r,disabled:c=!1})=>O.jsx("div",{className:"fixed right-8 top-1/2 -translate-y-1/2 z-50 flex flex-col gap-4",children:l.map((s,f)=>O.jsx("button",{onClick:()=>!c&&r(f),className:`w-3 h-3 rounded-full transition-all duration-300 ${u===f?"bg-cyan-400 scale-150":"bg-gray-600 hover:bg-gray-400"}`,"aria-label":`Go to ${s}`},s))}),Fx=()=>{const{currentSection:l,setCurrentSection:u,handleScroll:r,isScrolling:c}=Iy(Cu.length);return O.jsxs(O.Fragment,{children:[O.jsxs("div",{className:"hidden md:block relative w-full h-screen bg-black text-white overflow-hidden",style:{height:"100dvh "},children:[O.jsx(Kx,{currentSection:l,maxSections:Cu.length,onScroll:r}),O.jsx(Jx,{sections:Cu,currentSection:l,onSelect:u,disabled:c}),O.jsxs("div",{className:"h-full transition-transform duration-1000 ease-in-out",style:{transform:`translateY(-${l*100}vh)`,WebkitTransform:`translateY(-${l*100}vh)`},children:[O.jsx($d,{}),O.jsx(Wd,{}),O.jsx(tp,{currentSection:l}),O.jsx(ep,{}),O.jsx(qp,{}),O.jsx(Yp,{})]})]}),O.jsxs("div",{className:"md:hidden relative w-full bg-black text-white",children:[O.jsx($d,{}),O.jsx(Wd,{}),O.jsx(tp,{currentSection:0}),O.jsx(ep,{}),O.jsx(qp,{}),O.jsx(Yp,{})]})]})};Fy.createRoot(document.getElementById("root")).render(O.jsx(Vy.StrictMode,{children:O.jsx(Fx,{})}));
