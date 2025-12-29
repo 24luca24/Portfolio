@@ -22,7 +22,7 @@ const App = () => {
   return (
     <>
       {/* Desktop: Full-page scroll with fixed sections */}
-      <div className="hidden md:block relative w-full h-screen bg-black text-white overflow-hidden">
+      <div className="hidden md:block relative w-full h-screen bg-black text-white overflow-hidden" style={{ height: '100dvh '}}>
         <ArrowNavigation
           currentSection={currentSection}
           maxSections={sections.length}
@@ -38,7 +38,9 @@ const App = () => {
         
         <div
           className="h-full transition-transform duration-1000 ease-in-out"
-          style={{ transform: `translateY(-${currentSection * 100}vh)` }}
+          style={{ transform: `translateY(-${currentSection * 100}vh)` ,
+          WebkitTransform: `translateY(-${currentSection * 100}vh)`
+          }}
         >
           <HeroSection />
           <AboutSection />
