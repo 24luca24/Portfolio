@@ -1,6 +1,5 @@
 import { sections } from "./data/sections";
 import { useFullPageScroll } from "./hooks/useFullPageScroll";
-
 //Sections
 import HeroSection from "./sections/HeroSection";
 import AboutSection from "./sections/AboutSection";
@@ -8,11 +7,9 @@ import StatsSection from "./sections/StatsSection";
 import ExperienceSection from "./sections/ExperienceSection";
 import ProjectsSection from "./sections/ProjectsSection";
 import ContactSection from "./sections/ContactSection";
-
 //Navigation
 import ArrowNavigation from './components/navigation/ArrowNavigation';
 import DotNavigation from './components/navigation/DotNavigation';
-
 
 const App = () => {
   const {
@@ -23,36 +20,45 @@ const App = () => {
   } = useFullPageScroll(sections.length);
 
   return (
-    <div className="relative w-full h-screen bg-black text-white overflow-hidden">
+    <>
+      {/* Desktop: Full-page scroll with fixed sections */}
+      <div className="hidden md:block relative w-full h-screen bg-black text-white overflow-hidden">
+        <ArrowNavigation
+          currentSection={currentSection}
+          maxSections={sections.length}
+          onScroll={handleScroll}
+        />
+        
+        <DotNavigation
+          sections={sections}
+          currentSection={currentSection}
+          onSelect={setCurrentSection}
+          disabled={isScrolling}
+        />
+        
+        <div
+          className="h-full transition-transform duration-1000 ease-in-out"
+          style={{ transform: `translateY(-${currentSection * 100}vh)` }}
+        >
+          <HeroSection />
+          <AboutSection />
+          <StatsSection currentSection={currentSection} />
+          <ExperienceSection />
+          <ProjectsSection />
+          <ContactSection />
+        </div>
+      </div>
 
-      {/* Arrow navigation (up / down) */}
-      <ArrowNavigation
-        currentSection={currentSection}
-        maxSections={sections.length}
-        onScroll={handleScroll}
-      />
-
-      {/* Dot navigation */}
-      <DotNavigation
-        sections={sections}
-        currentSection={currentSection}
-        onSelect={setCurrentSection}
-        disabled={isScrolling}
-      />
-
-      {/* Sections container */}
-      <div
-        className="h-full transition-transform duration-1000 ease-in-out"
-        style={{ transform: `translateY(-${currentSection * 100}vh)` }}
-      >
+      {/* Mobile: Normal scrolling */}
+      <div className="md:hidden relative w-full bg-black text-white">
         <HeroSection />
         <AboutSection />
-        <StatsSection currentSection={currentSection} />
+        <StatsSection currentSection={0} />
         <ExperienceSection />
         <ProjectsSection />
         <ContactSection />
       </div>
-    </div>
+    </>
   );
 };
 
