@@ -21,14 +21,14 @@ const ProjectModal = ({ project, onClose }: Props) => {
   }, []);
 
   const handleScroll = (e: React.UIEvent<HTMLDivElement>) => {
-  const scrollTop = e.currentTarget.scrollTop;
+    const scrollTop = e.currentTarget.scrollTop;
 
-  setCollapsed((prev) => {
-    if (!prev && scrollTop > 120) return true;   // collapse
-    if (prev && scrollTop < 40) return false;    // expand
-    return prev;                                 // no change
-  });
-};
+    setCollapsed((prev) => {
+      if (!prev && scrollTop > 120) return true;   // collapse
+      if (prev && scrollTop < 40) return false;    // expand
+      return prev;                                 // no change
+    });
+  };
 
   const modalContent = (
     <div
@@ -105,33 +105,41 @@ const ProjectModal = ({ project, onClose }: Props) => {
           </div>
 
           {/* Scroll Content */}
-          <div className="px-8 pt-6 pb-8">
+          <div className="px-8 md:px-12 pt-8 pb-12">
             <div className="mb-8">
-              <h3 className="text-xl font-semibold mb-3 text-gray-200">
+              <h3 className="text-2xl font-semibold mb-6 text-white border-b border-gray-700 pb-3">
                 About This Project
               </h3>
 
               <div className="
-                prose prose-invert max-w-none text-gray-300
-                prose-p:my-6
-                prose-ul:my-6
-                prose-li:my-2
-                prose-h3:mt-12 prose-h3:mb-4
-                prose-hr:my-12
-                prose-strong:text-white
-                prose-a:text-cyan-400 prose-a:no-underline hover:prose-a:underline
-                ">
-                <ReactMarkdown>{project.longDescription}</ReactMarkdown>
+                prose prose-invert max-w-none text-white
+                [&_p]:text-white [&_p]:leading-relaxed [&_p]:text-base [&_p]:my-5
+                [&_ul]:my-6 [&_ul]:text-white
+                [&_li]:my-2 [&_li]:leading-relaxed [&_li]:text-base [&_li]:text-white
+                [&_h3]:text-2xl [&_h3]:font-semibold [&_h3]:text-cyan-400 [&_h3]:mt-12 [&_h3]:mb-5 [&_h3]:border-b [&_h3]:border-gray-700 [&_h3]:pb-2
+                [&_hr]:my-10 [&_hr]:border-white/30 [&_hr]:border-t-2
+                [&_strong]:text-cyan-300 [&_strong]:font-semibold
+                [&_a]:text-cyan-400 [&_a]:no-underline hover:[&_a]:underline [&_a]:transition-colors
+                [&_code]:text-cyan-300 [&_code]:bg-gray-800 [&_code]:px-2 [&_code]:py-1 [&_code]:rounded [&_code]:text-sm
+                [&_blockquote]:border-l-4 [&_blockquote]:border-cyan-400 [&_blockquote]:pl-4 [&_blockquote]:italic [&_blockquote]:text-white
+              ">
+                <ReactMarkdown
+                  components={{
+                    p: ({ children }) => <p className="whitespace-pre-line">{children}</p>,
+                  }}
+                >
+                  {project.longDescription}
+                </ReactMarkdown>
               </div>
             </div>
 
             {project.github && (
-              <div className="pt-6 border-t border-gray-700">
+              <div className="pt-8 border-t border-gray-700 mt-8">
                 <a
                   href={project.github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-6 py-3 bg-cyan-400 text-gray-900 font-semibold rounded-lg hover:bg-cyan-300 transition-colors"
+                  className="inline-flex items-center gap-3 px-8 py-4 bg-cyan-400 text-gray-900 font-semibold rounded-lg hover:bg-cyan-300 transition-all hover:scale-105 shadow-lg hover:shadow-cyan-400/50"
                 >
                   <Github className="w-5 h-5" />
                   View on GitHub
