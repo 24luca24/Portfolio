@@ -19,10 +19,24 @@
   animation: slideUp 0.3s ease-out;
 }
 
-/* === Safari & cross-browser fixes === */
+/* ============================= */
+/* === SAFARI REAL VIEWPORT === */
+/* ============================= */
+
 :root {
-  --vh: 1vh; /* Safari-safe viewport height */
+  --vh: 1vh;
 }
+
+/* Safari-only: use real visual viewport */
+@supports (-webkit-touch-callout: none) {
+  :root {
+    --real-vh: 100svh;
+  }
+}
+
+/* ============================= */
+/* === GLOBAL FIXES === */
+/* ============================= */
 
 /* Font smoothing ONLY (safe globally) */
 * {
@@ -33,6 +47,13 @@
 /* Prevent bounce scrolling on iOS */
 body {
   overscroll-behavior-y: none;
+}
+
+/* Prevent Safari horizontal squeeze */
+html,
+body {
+  width: 100%;
+  overflow-x: hidden;
 }
 
 /* ============================= */
@@ -46,7 +67,7 @@ body {
   backdrop-filter: blur(8px);
 }
 
-/* 🚨 iOS Safari ONLY: disable backdrop-filter to prevent gray screen */
+/* iOS Safari ONLY: disable backdrop-filter to prevent gray screen */
 @supports (-webkit-touch-callout: none) {
   .backdrop-blur,
   [class*="backdrop-blur"] {
@@ -92,11 +113,17 @@ body {
 /* === VIEWPORT HEIGHT FIX === */
 /* ============================= */
 
+/* Default behavior (Chrome, Firefox, Mobile) */
 .h-screen {
   height: 100vh;
-  height: 100dvh; /* modern Safari */
-  min-height: stretch; /* spec-compliant */
-  min-height: -webkit-fill-available; /* iOS fallback */
+}
+
+/* Safari ONLY override */
+@supports (-webkit-touch-callout: none) {
+  .h-screen {
+    height: var(--real-vh);
+    min-height: var(--real-vh);
+  }
 }
 
 /* ============================= */
